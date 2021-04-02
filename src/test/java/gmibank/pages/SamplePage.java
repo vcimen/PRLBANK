@@ -14,7 +14,6 @@ public class SamplePage {
     @FindBy(xpath = "//*[text()=\"Register\"]")
     public WebElement registerButton;
 
-
     @FindBy(xpath = "//a[@aria-haspopup='true']")
     public WebElement humanIcon;
 }
