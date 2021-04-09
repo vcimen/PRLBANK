@@ -24,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 public class Driver {
     private Driver(){ }
     static WebDriver driver;
-
+    static int timeout=5;
     public static WebDriver getDriver(){
         if(driver == null){
             switch (ConfigurationReader.getProperty("browser")){
@@ -316,4 +316,86 @@ public class Driver {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
         jse.executeScript(command);
     }
+    //For all money transfers
+    public static void selectByVisibleText(WebElement element, String text){
+        Select objSelect =new Select(element);
+        objSelect.selectByVisibleText(text);
+    }
+    public static void selectByIndex(WebElement element, int index){
+        Select objSelect =new Select(element);
+        objSelect.selectByIndex(index);
+    }
+
+    public static void selectByValue(WebElement element, String value) {
+        Select objSelect = new Select(element);
+        List<WebElement> elementCount = objSelect.getOptions();
+        objSelect.selectByValue(value);
+        System.out.println("number of elements: "+elementCount.size());
+    }
+    public static void waitAndClick(WebElement element, int timeout) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.click();
+                return;
+            } catch (WebDriverException e) {
+                wait(1);
+            }
+        }
+    }
+    public static void waitAndClick(WebElement element) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.click();
+                return;
+            } catch (WebDriverException e) {
+                wait(1);
+            }
+        }
+    }
+    public static void waitAndSendText(WebElement element,String text, int timeout) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.sendKeys(text);
+                return;
+            } catch (WebDriverException e) {
+                wait(1);
+            }
+        }
+    }
+
+    public static void waitAndSendText(WebElement element,String text) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.sendKeys(text);
+                return;
+            } catch (WebDriverException e) {
+                wait(1);
+            }
+        }
+    }
+    public static void waitAndSendTextWithDefaultTime(WebElement element,String text) {
+        for (int i = 0; i < timeout; i++) {
+            try {
+                element.sendKeys(text);
+                return;
+            } catch (WebDriverException e) {
+                wait(1);
+            }
+        }
+    }
+    public static String waitAndGetText(WebElement element, int timeout) {
+        String text="";
+        for (int i = 0; i < timeout; i++) {
+            try {
+                text = element.getText();
+                return text;
+            } catch (WebDriverException e) {
+                wait(1);
+            }
+        }
+        return null;
+    }
+
+
+
 }
