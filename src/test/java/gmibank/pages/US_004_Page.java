@@ -31,4 +31,6 @@ public class US_004_Page {
     @FindBy (xpath = "//*[@class='btn btn-secondary']")
     public WebElement cancelButton;
 
+    @FindBy(xpath = "//span[.='Sign out']")
+    public  WebElement signOutButton;
 }

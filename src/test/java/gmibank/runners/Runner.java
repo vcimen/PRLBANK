@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         //plugin = "html:target\\default-cucumber-reports",//for windows
         features = "src/test/resources/features",
         glue = "gmibank/stepdefinitions",
-        tags = "@US_005",
+        tags = "@US_004loginValid",
         dryRun = false
 
 )
