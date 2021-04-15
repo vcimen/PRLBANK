@@ -73,8 +73,6 @@ public class US_005_StepDef {
         System.out.println("Actual   : "+Actual);
         System.out.println("Expected : "+Expected);
         Assert.assertEquals(Expected,Actual);
-
-
         Driver.closeDriver();
     }
 
