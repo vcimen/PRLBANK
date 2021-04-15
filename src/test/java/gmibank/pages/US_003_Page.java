@@ -39,19 +39,19 @@ public class US_003_Page {
     public WebElement registerButton;
 
     @FindBy (xpath = "(//li[@class='point'])[1]")
-    public WebElement line1;
+    public WebElement redColor;
 
     @FindBy (xpath = "(//li[@class='point'])[2]")
-    public WebElement line2;
+    public WebElement orangeColor;
 
     @FindBy (xpath = "(//li[@class='point'])[3]")
-    public WebElement line3;
+    public WebElement yellowColor;
 
     @FindBy (xpath = "(//li[@class='point'])[4]")
-    public WebElement line4;
+    public WebElement greenColor;
 
     @FindBy (xpath = "(//li[@class='point'])[5]")
-    public WebElement line5;
+    public WebElement darGreenColor;
 
 
 
