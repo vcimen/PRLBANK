@@ -51,6 +51,11 @@ public class US_004_StepDef {
     @Then("User verifies if the user sign in")
     public void user_verifies_if_the_user_sign_in() {
         Assert.assertTrue(us_004_page.userNameVerify.isDisplayed());
+        Driver.wait(2);
+        us_004_page.accountMenu.click();
+        Driver.wait(2);
+        us_004_page.signOutButton.click();
+
     }
 
     //@US_004-02

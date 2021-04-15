@@ -1,1 +1,0 @@
-// endpoint: https://www.gmibank.com/api/tp-countries
