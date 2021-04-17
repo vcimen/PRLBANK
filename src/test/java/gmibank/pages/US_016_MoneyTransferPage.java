@@ -5,14 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MoneyTransferPage {
-    public MoneyTransferPage(){
+public class US_016_MoneyTransferPage {
+    public US_016_MoneyTransferPage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
     @FindBy(id = "account-menu")
     public WebElement usersMenuDropdown;
-
-
 
     @FindBy(xpath = "//*[text()='My Operations']")
     public WebElement myOperations;
