@@ -16,8 +16,8 @@ public class LoginPageStep {
         Driver.getDriver().get(ConfigurationReader.getProperty("gmibank_login_url"));
     }
 
-    @Given("User sigs in as {string}")
-    public void user_sigs_in_as(String user) {
+    @Given("User sign in as {string}")
+    public void user_sign_in_as(String user) {
         if (user.equals("customer")){
             username = ConfigurationReader.getProperty("customer_username");
             password = ConfigurationReader.getProperty("customer_password");
