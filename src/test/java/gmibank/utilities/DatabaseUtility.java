@@ -10,6 +10,7 @@ public class DatabaseUtility {
     private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
+
     public static void createConnection() {
         String url = "jdbc:postgresql://157.230.48.97:5432/gmibank_db";
         String user = "techprodb_user";
@@ -87,6 +88,9 @@ public class DatabaseUtility {
      */
     public static Object getCellValue(String query) {
         return getQueryResultList(query).get(0).get(0);
+    }
+    public static Object getCellValue(String query , int column , int row) {
+        return getQueryResultList(query).get(row).get(column);
     }
     /**
      *
@@ -210,4 +214,6 @@ public class DatabaseUtility {
         int rowCount = resultSet.getRow();
         return rowCount;
     }
+
+
 }
