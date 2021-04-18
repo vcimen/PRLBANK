@@ -1,6 +1,7 @@
 package gmibank.stepdefinitions;
 
 import gmibank.pages.MoneyTransferPage;
+import gmibank.utilities.DatabaseUtility;
 import gmibank.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -50,5 +51,30 @@ public class MoneytransferStepDef {
     @Then("User makes mone tranfer")
     public void user_makes_mone_tranfer() {
     Driver.waitAndClick(moneyTransferPage.makeMoneyButton);
+    }
+
+    public static class DataBaseStepDefs {
+
+        public static void main(String[] args) {
+            DatabaseUtility.createConnection();
+
+        }
+
+        @Given("ders user creates a connection with db using {string} , {string} and {string}")
+        public void ders_user_creates_a_connection_with_db_using_and(String url, String user, String password) {
+
+        }
+
+        @Given("ders user reads the Customers data using {string} and {string}")
+        public void ders_user_reads_the_Customers_data_using_and(String query, String ssn) {
+
+
+        }
+
+        @Then("ders validate customers data")
+        public void ders_validate_customers_data() {
+
+        }
+
     }
 }

@@ -1,15 +1,22 @@
 package gmibank.utilities;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+//import gmibank.pojos.Country;
+//import gmibank.pojos.Customer;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.*;
 
 public class DatabaseUtility {
     private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
+
+
     public static void createConnection() {
         String url = "jdbc:postgresql://157.230.48.97:5432/gmibank_db";
         String user = "techprodb_user";
@@ -21,36 +28,11 @@ public class DatabaseUtility {
             e.printStackTrace();
         }
     }
-    public static ResultSet getResultset() {
-        try {
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
-
-    private static void executeQuery(String query) {
-        try {
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            resultSet = statement.executeQuery(query);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
     public static void createConnection(String url, String user, String password) {
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
-
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -69,15 +51,6 @@ public class DatabaseUtility {
             e.printStackTrace();
         }
     }
-    public static ResultSet getResultSet() {
-        try {
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
     /**
      *
      * @param query
@@ -95,6 +68,11 @@ public class DatabaseUtility {
      *         results in multiple rows and/or columns of data, only first row will
      *         be returned. The rest of the data will be ignored
      */
+    public static Object getCellValue(String query , int column , int row) {
+        return getQueryResultList(query).get(row).get(column);
+    }
+
+
     public static List<Object> getRowList(String query) {
         return getQueryResultList(query).get(0);
     }
@@ -167,15 +145,12 @@ public class DatabaseUtility {
         ResultSetMetaData rsmd;
         try {
             rsmd = resultSet.getMetaData();
-            int colon_sayisi=rsmd.getColumnCount(); //ben ekledim
-            System.out.println("Toplam kolon sayisi= "+colon_sayisi);//ben ekledim
             while (resultSet.next()) {
                 Map<String, Object> colNameValueMap = new HashMap<>();
                 for (int i = 1; i <= rsmd.getColumnCount(); i++) {
                     colNameValueMap.put(rsmd.getColumnName(i), resultSet.getObject(i));
                 }
                 rowList.add(colNameValueMap);
-
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -192,6 +167,7 @@ public class DatabaseUtility {
         executeQuery(query);
         List<String> columns = new ArrayList<>();
         ResultSetMetaData rsmd;
+
         try {
             rsmd = resultSet.getMetaData();
             int columnCount = rsmd.getColumnCount();
@@ -202,12 +178,100 @@ public class DatabaseUtility {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        //System.out.println("List");
         return columns;
     }
-
+    private static void executeQuery(String query) {
+        try {
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     public static int getRowCount() throws Exception {
         resultSet.last();
         int rowCount = resultSet.getRow();
         return rowCount;
     }
+
+    public static void insertCountry(String  countryName){
+
+        // code yazilacak
+
+
+    }
+
+    public static void executeInsertion(String query) {
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            boolean done = statement.execute(query);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
+    public static int getMaxCountryId (String query,String column){
+        int max = 0;
+        List<Object> allIds = getColumnData(query, column);
+
+        for (int i=0; i<allIds.size();i++){
+            int num = Integer.parseInt(allIds.get(i).toString().trim());
+            if(max <= num)
+                max=num;
+        }
+        return max;
+    }
+
+    public static Object getCellValuewithRowsAndCells(String query,int row,int cell) {
+
+        return getQueryResultList(query).get(row).get(cell);
+    }
+
+    public static List<Object> getRowListWithParam(String query,int row) {
+
+        return getQueryResultList(query).get(row);
+    }
+
+        /*
+        public static void main(String[] args) {
+            String query = "Select * from tp_customer;";
+            createConnection("jdbc:postgresql://157.230.48.97:5432/gmibank_db","techprodb_user","Techpro_@126");
+    //        getColumnNames(query);
+    //        System.out.println(getColumnNames(query));
+    //        System.out.println(getColumnData(query, getColumnNames(query).get(3)));
+    //        System.out.println(getCellValuewithRowsAndCells(query,5,4));
+            List<Customer> listOfCustomers = new ArrayList<>();
+
+            List <List< Object>> list =getQueryResultList(query);
+            for (int i=0; i<20; i++){
+                Customer customer = new Customer();
+                Country country = new Country();
+                System.out.println(list.get(i).get(1));
+                customer.setFirstName(list.get(i).get(1).toString());
+                customer.setSsn(list.get(i).get(10).toString());
+                country.setName(list.get(i).get(8).toString());
+                customer.setState(list.get(i).get(14).toString());
+                customer.setZipCode(list.get(i).get(15).toString());
+                customer.setCountry(country);
+                listOfCustomers.add(customer);
+            }
+
+            //PDFGenerator.pdfGeneratorRowsAndCellsWithList("All Customers!",listOfCustomers,"AllApplicants.pdf" );
+
+        }*/
+
 }
