@@ -9,3 +9,7 @@ Feature: database testing ders
     Examples: demo read the data
       |query|columnName|
       |Select * from tp_customer|ssn|
+
+
+
+

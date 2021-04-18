@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    public LoginPage(){
+public class US_005_Page {
+    public US_005_Page(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
     @FindBy(id = "account-menu")
@@ -30,3 +30,5 @@ public class LoginPage {
     @FindBy(xpath = "//span[text()='Reset your password']")
     public WebElement resetPasswordText;
 }
+
+
