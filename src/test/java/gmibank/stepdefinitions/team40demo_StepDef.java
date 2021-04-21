@@ -8,6 +8,7 @@ import gmibank.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.codehaus.jackson.map.util.ISO8601Utils;
 
 public class team40demo_StepDef {
     LoginPage loginPage = new LoginPage();
@@ -24,9 +25,7 @@ public class team40demo_StepDef {
     @And("User navigates to registration page")
     public void userNavigatesToRegistrationPage() {
     loginPage.loginDropdown.click();
-    Driver.wait(2);
-
-
+    //Driver.wait(2);
 
     }
 
@@ -63,20 +62,22 @@ public class team40demo_StepDef {
     public void userNavigatesToMainPage() {
         loginPage.loginDropdown.click();
         Driver.wait(2);
-        team40demo_page.signIn.click();
-        Driver.wait(2);
+
     }
 
     @Then("Admin clicks sign in button")
     public void adminClicksSignInButton() {
-        team40demo_page.userName.sendKeys(ConfigurationReader.getProperty("user_username"));
-        team40demo_page.signPassword.sendKeys(ConfigurationReader.getProperty("user_password"));
-        team40demo_page.signInButton.click();
-        Driver.wait(3);
+        team40demo_page.signIn.click();
+        Driver.wait(2);
+
     }
 
     @And("Admin logs in to admin account {string} and {string}")
     public void adminLogsInToAdminAccountAnd(String arg0, String arg1) {
+        team40demo_page.userName.sendKeys(ConfigurationReader.getProperty("user_username"));
+        team40demo_page.signPassword.sendKeys(ConfigurationReader.getProperty("user_password"));
+        team40demo_page.signInButton.click();
+        Driver.wait(3);
 
     }
 
@@ -85,16 +86,28 @@ public class team40demo_StepDef {
         team40demo_page.administration.click();
         team40demo_page.user_Management.click();
         Driver.wait(3);
-        team40demo_page.lastPage.click();
+        team40demo_page.createdDate.click();
+        Driver.wait(3);
+        team40demo_page.ali_can.click();
+        team40demo_page.activated.click();
+        Driver.wait(3);
+        team40demo_page.edit_save.click();
+        Driver.wait(3);
 
     }
 
+
     @And("Admin logs out from admin account")
     public void adminLogsOutFromAdminAccount() {
+        loginPage.loginDropdown.click();
+        Driver.wait(2);
+        team40demo_page.signOut.click();
+
     }
 
     @Then("Employee logs in to employee account {string} and {string}")
     public void employeeLogsInToEmployeeAccountAnd(String arg0, String arg1) {
+
     }
 
     @And("Employee integrates accounts for the user")

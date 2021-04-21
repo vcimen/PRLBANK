@@ -81,6 +81,16 @@ public class Team40demo_Page {
     public WebElement saveButton;
     @FindBy(xpath = "//a[@href='/logout']")
     public WebElement logoutButton;
+    @FindBy(xpath = "//span[text()='Created date']")
+    public WebElement createdDate;
+    @FindBy(xpath = "//a[@href='/admin/user-management/ali_can/edit']")
+    public WebElement ali_can;
+    @FindBy(id = "activated")
+    public WebElement activated;
+    @FindBy(xpath = "//span[text()='Save']")
+    public WebElement edit_save;
+    @FindBy(xpath = "//span[text()='Sign out']")
+    public WebElement signOut;
 
 
 
