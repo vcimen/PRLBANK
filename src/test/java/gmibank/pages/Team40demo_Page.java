@@ -1,7 +1,9 @@
 package gmibank.pages;
 
 import gmibank.utilities.Driver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -83,14 +85,80 @@ public class Team40demo_Page {
     public WebElement logoutButton;
     @FindBy(xpath = "//span[text()='Created date']")
     public WebElement createdDate;
-    @FindBy(xpath = "//a[@href='/admin/user-management/ali_can/edit']")
-    public WebElement ali_can;
+    @FindBy(xpath = "//a[@href='/admin/user-management/star_tester/edit']")
+    public WebElement starTester;
     @FindBy(id = "activated")
     public WebElement activated;
     @FindBy(xpath = "//span[text()='Save']")
     public WebElement edit_save;
     @FindBy(xpath = "//span[text()='Sign out']")
     public WebElement signOut;
+    //My Operations - Employee - User
+    @FindBy(id="entity-menu")
+    public WebElement myOperations;
+    @FindBy(xpath = "//*[text()='My Accounts']")
+    public WebElement myAccount;
+    @FindBy(linkText = "Manage Customers")
+    public WebElement manageCustomers;
+    @FindBy(id = "jh-create-entity")
+    public WebElement createNewCustomer;
+    @FindBy(id="search-ssn")
+    public WebElement SSN;
+    @FindBy(xpath = "(//button[@type='button'])[2]")
+    public WebElement searchSSN;
+    @FindBy(name = "middleInitial")
+    public WebElement middleinitialTextBox;
+    @FindBy(name = "phoneNumber")
+    public WebElement phonenumberTextBox;
+    @FindBy(name = "zipCode")
+    public WebElement zipcodeTextBox;
+    @FindBy(name = "city")
+    public WebElement cityTextBox;
+    @FindBy(name = "createDate")
+    public  WebElement createDate;
+    @FindBy(xpath = "//select[@name='country.id']/option[133]")
+    public WebElement country;
+    @FindBy(name = "state")
+    public WebElement state;
+    @FindAll ({@FindBy(xpath = "//select[@name='accounts']")})
+    public static List<WebElement> accounts;
+    @FindBy(xpath = "(//*[text()='Team40account1'])")
+    public WebElement account1;
+    @FindBy(xpath = "(//*[text()='Team40account2'])")
+    public WebElement account2;
+    @FindBy(xpath = "//span[text()='Save']")
+    public WebElement employeeUserSave;
+    @FindBy(name = "user.id")
+    public WebElement userDropdown;
+    @FindBy(id = "save-entity")
+    public WebElement saveButtonEmployeeUser;
+    @FindBy(id="tp-customer-zelleEnrolled")
+    public WebElement zelle;
+
+
+    @FindBy(xpath = "//*[text()='Transfer Money']")
+    public WebElement transferMoneyButton;
+    @FindBy(id = "fromAccountId")
+    public WebElement fromAccount;
+    // @FindBy(xpath = "//*[text()='CHECKING-3562-20$']")
+    //public WebElement checking;
+    //@FindBy(xpath = "//*[text()='SAVING-3563-30$']")
+    //public WebElement saving;
+    @FindBy(id = "toAccountId")
+    public WebElement toAccount;
+    @FindBy(xpath = "//*[@name='balance']")
+    public WebElement balance;
+    @FindBy(id = "balancecent")
+    public WebElement balanceCent;
+
+    @FindBy(xpath = "(//*[@name= 'description'])[2]")
+    public WebElement description;
+    @FindBy(id = "make-transfer")
+    public WebElement makeMoneyTransferButton;
+    @FindBy(xpath = "(//td)[3]")
+   public WebElement firstAccountBalance;
+   @FindBy(xpath = "(//td)[7]")
+   public WebElement secondAccountBalance;
 
 
 
@@ -100,18 +168,17 @@ public class Team40demo_Page {
     @FindAll ({@FindBy(xpath = "//tbody/tr/td[4]")})
     public static List<WebElement> activation;
 
-
-
-
+    public void scroolPage(){
+        Actions actions = new Actions(Driver.getDriver());
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
+    }
 
     public static void main(String[] args) {
-        for (int i = 0; i < customerUserNames.size(); i++) {
-            if(customerUserNames.get(i).getText().equalsIgnoreCase("admin40")){
+        for (int i = 0; i < accounts.size(); i++) {
+            if(accounts.get(i).getText().equalsIgnoreCase("Team40account")){
                 activation.get(i).click();
             }
 
         }
     }
-
-
 }
