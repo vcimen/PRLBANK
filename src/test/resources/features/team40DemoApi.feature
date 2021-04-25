@@ -1,5 +1,7 @@
-@US_20
-  Feature: "System should allow to read all customers info using api end point
-    ""https://www.gmibank.com/api/tp-customers"""
+@team40demoapi
+  Feature: System should allow to read customers ssn to verify by api end point
 
-  Scenario: TC
+    Scenario: Read customer's ssn
+      Given User sets a response using api endpoint "https://www.gmibank.com/api/tp-customers?size=3000"
+      And User deserializers ssn data as json to java
+      Then User validates the ssn data

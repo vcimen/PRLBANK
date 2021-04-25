@@ -1,2 +1,4 @@
-package gmibank.stepdefinitions;public class US_020_StepDef {
+package gmibank.stepdefinitions;
+
+public class US_020_StepDef {
 }

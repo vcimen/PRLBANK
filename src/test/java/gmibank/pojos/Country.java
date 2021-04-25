@@ -1,8 +1,34 @@
 package gmibank.pojos;
 
-public class CountryObject {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-    private int id;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Country {
+    private String id;
     private String name;
-    private String states;
+    private States states;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public States getStates() {
+        return states;
+    }
+
+    public void setStates(States states) {
+        this.states = states;
+    }
 }

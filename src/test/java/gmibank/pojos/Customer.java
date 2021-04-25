@@ -1,27 +1,32 @@
 package gmibank.pojos;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomerObject {
-
+public class Customer {
     private int id;
     private String firstName;
     private String lastName;
     private String middleInitial;
     private String email;
     private String mobilePhoneNumber;
-    private String phoneNumber;
     private String zipCode;
     private String address;
     private String city;
-    private String ssn;
-    private String createDate;
-    private boolean zelleEnrolled;
-    //private Country state;
-    private String user;
-    private String accountted;
 
+
+
+    private String ssn;
+    private String createData;
+    private boolean zelleEnrolled;
+    private Country country;
+    private String state;
+    private User user;
+    private Accounts account;
+
+    public String getSsn() {
+        return ssn;
+    }
     public int getId() {
         return id;
     }
@@ -70,14 +75,6 @@ public class CustomerObject {
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getZipCode() {
         return zipCode;
     }
@@ -85,7 +82,8 @@ public class CustomerObject {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-    public String getAddress(){
+
+    public String getAddress() {
         return address;
     }
 
@@ -101,20 +99,20 @@ public class CustomerObject {
         this.city = city;
     }
 
-    public String getSsn() {
-        return ssn;
-    }
+    //public String getSsn() {
+        //return ssn;
+   // }
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getCreateData() {
+        return createData;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setCreateData(String createData) {
+        this.createData = createData;
     }
 
     public boolean isZelleEnrolled() {
@@ -125,19 +123,36 @@ public class CustomerObject {
         this.zelleEnrolled = zelleEnrolled;
     }
 
-    public String getUser() {
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public User getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public String getAccountted() {
-        return accountted;
+    public Accounts getAccount() {
+        return account;
     }
 
-    public void setAccountted(String accountted) {
-        this.accountted = accountted;
+    public void setAccount(Accounts account) {
+        this.account = account;
     }
+
 }
