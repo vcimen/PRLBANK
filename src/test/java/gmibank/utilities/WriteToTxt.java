@@ -42,10 +42,11 @@ public class WriteToTxt {
         } catch (Exception e) {
         }
     }
-    public static void saveDataInFileSsn(String fileName, Customer[] customer) {
+    public static void saveDataInFileWithSSN2(String fileName, Customer[] customers) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.append(customer.getSsn());
+            for (int i = 0; i < customers.length; i++)
+                writer.append(customers[i].getSsn() + "\n");
             writer.close();
         } catch (Exception e) {
         }

@@ -65,6 +65,8 @@ public class Team40demo_Page {
     public WebElement userManagementButton;
     @FindBy(xpath = "//td[2]")
     public List<WebElement> rowIds;
+    @FindBy(xpath = "//a[text()='2']")
+    public WebElement secondPage;
     @FindBy(xpath = "//span[@class='badge badge-info']")
     public List<WebElement> userRoles;
     @FindBy(xpath = "//a[@aria-label = 'Next']")
@@ -85,7 +87,7 @@ public class Team40demo_Page {
     public WebElement logoutButton;
     @FindBy(xpath = "//span[text()='Created date']")
     public WebElement createdDate;
-    @FindBy(xpath = "//a[@href='/admin/user-management/star_tester/edit']")
+    @FindBy(xpath = "//a[@href='/admin/user-management/star_tester5/edit']")
     public WebElement starTester;
     @FindBy(id = "activated")
     public WebElement activated;
@@ -150,6 +152,8 @@ public class Team40demo_Page {
     public WebElement balance;
     @FindBy(id = "balancecent")
     public WebElement balanceCent;
+    @FindBy(xpath = "//div[@role='alert']")
+    public WebElement validation;
 
     @FindBy(xpath = "(//*[@name= 'description'])[2]")
     public WebElement description;

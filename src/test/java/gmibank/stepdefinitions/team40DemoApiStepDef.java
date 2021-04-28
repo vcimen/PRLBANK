@@ -11,6 +11,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
 
+import java.io.File;
 import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
@@ -49,11 +50,17 @@ public class team40DemoApiStepDef {
 
     @Then("User validates the ssn data")
     public void user_validates_the_ssn_data() {
-       /* JsonPath jsonPath = response.jsonPath();
+        JsonPath jsonPath = response.jsonPath();
         String validates = jsonPath.getString("ssn");
         System.out.println(validates.length());
-        //Assert.assertTrue(validates.contains("233-45-6647"));*/
-        WriteToTxt.saveDataInFileSsn("ssn.txt", customers);
+        Assert.assertTrue(validates.contains("233-45-8000"));
+        System.out.println("Validation Successfull");
+
+        File file = new File("ssn.txt");
+        if(file!=null){
+            file.delete();
+        }
+        WriteToTxt.saveDataInFileWithSSN2("ssn.txt", customers);
     }
 
 
